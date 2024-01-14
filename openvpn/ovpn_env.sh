@@ -16,7 +16,7 @@ declare -x OVPN_FRAGMENT=
 declare -x OVPN_KEEPALIVE='10 60'
 declare -x OVPN_MTU=
 declare -x OVPN_NAT=0
-declare -x OVPN_PORT=1194
+declare -x OVPN_PORT=443
 declare -x OVPN_PROTO=udp
 declare -x OVPN_PUSH=()
 declare -x OVPN_ROUTES=([0]="192.168.254.0/24")
