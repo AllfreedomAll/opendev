@@ -141,7 +141,7 @@ block_bt() {
 ovpen_install(){
   sudo mkdir -p /data/openvpn/conf
   sudo mkdir -p /data/dep/
-  sudo cd /data/dep/
+  cd /data/dep/
   sudo git clone https://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@github.com/AllfreedomAll/opendev.git
   sudo cp -r /data/dep/opendev/openvpn/* /data/openvpn/
 #  docker run -v /data/openvpn/conf/:/etc/openvpn --name openvpn-l -p 443:443/udp -d --restart always --privileged kylemanna/openvpn ovpn_run  --proto udp
