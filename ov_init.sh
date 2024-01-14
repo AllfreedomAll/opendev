@@ -159,3 +159,5 @@ block_firewall
 set_speed_limit
 block_bt
 ovpen_install
+echo "密码文件:/data/openvpn/password_file,格式 用户名 密码 ,一个用户明 密码一行，没有验证用户名，只验证了密码"
+echo "客户端证书:/data/openvpn/ling.ovpn，修改其中的的 remote xxxx 443 udp 这一行,xxxx 为 机器的公网ip"
