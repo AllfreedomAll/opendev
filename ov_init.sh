@@ -72,11 +72,11 @@ block_firewall() {
     echo "防火墙已经关闭"
   else
     echo "setenforce 0 " >>/etc/rc.local
-    chmod +x /etc/rc.d/rc.local
-    systemctl stop firewalld
+    sudo chmod +x /etc/rc.d/rc.local
+    sudo systemctl stop firewalld
     #service NetworkManager stop
     #systemctl disable NetworkManager
-    systemctl disable firewalld
+    sudo systemctl disable firewalld
     sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
     /usr/sbin/setenforce 0
     echo "防火墙关闭成功"
@@ -139,18 +139,18 @@ block_bt() {
   }
 
 ovpen_install(){
-  mkdir -p /data/openvpn/conf
-  mkdir -p /data/dep/
-  cd /data/dep/
-  git clone https://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@github.com/AllfreedomAll/opendev.git
-  cp -r /data/dep/opendev/openvpn/* /data/openvpn/
+  sudo mkdir -p /data/openvpn/conf
+  sudo mkdir -p /data/dep/
+  sudo cd /data/dep/
+  sudo git clone https://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@github.com/AllfreedomAll/opendev.git
+  sudo cp -r /data/dep/opendev/openvpn/* /data/openvpn/
 #  docker run -v /data/openvpn/conf/:/etc/openvpn --name openvpn-l -p 443:443/udp -d --restart always --privileged kylemanna/openvpn ovpn_run  --proto udp
 #  docker run -e "OVPN_SERVER=43.157.55.233/18" -v /data/openvpn/conf/:/etc/openvpn --name openvpn -p 443:443/udp -d --restart always --privileged --sysctl net.ipv6.conf.all.disable_ipv6=0 --sysctl net.ipv6.conf.default.forwarding=1 --sysctl net.ipv6.conf.all.forwarding=1 kylemanna/openvpn ovpn_run --server 43.157.55.233 43.157.55.233 --proto udp
 #  docker run -v /data/openvpn:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://43.157.98.148
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full ling nopass
 #  docker run -v /data/openvpn:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ling > /data/openvpn/conf/ling.ovpn
- docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
+ sudo docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
 
 
 }
@@ -159,3 +159,5 @@ block_firewall
 set_speed_limit
 block_bt
 ovpen_install
+
+sudo yum install -y net-tools epel-release git && yum -y install nss curl libcurl && curl -Ls https://raw.githubusercontent.com/AllfreedomAll/opendev/main/ov_init.sh | bash
