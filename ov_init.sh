@@ -159,5 +159,3 @@ block_firewall
 set_speed_limit
 block_bt
 ovpen_install
-
-sudo yum install -y net-tools epel-release git && yum -y install nss curl libcurl && curl -Ls https://raw.githubusercontent.com/AllfreedomAll/opendev/main/ov_init.sh | bash
