@@ -1,8 +1,8 @@
 sudo yum install -y -q net-tools epel-release git
 sudo yum update -y -q nss curl libcurl
 sudo yum install -y docker
-systemctl enable docker
-systemctl start docker
+sudo systemctl enable docker
+sudo systemctl start docker
 
 
 docker_check(){
