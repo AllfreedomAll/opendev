@@ -150,10 +150,11 @@ ovpen_install(){
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full ling nopass
 #  docker run -v /data/openvpn:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ling > /data/openvpn/conf/ling.ovpn
- sudo docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
+sudo docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
 
 
 }
+docker_check
 set_swap
 block_firewall
 set_speed_limit
