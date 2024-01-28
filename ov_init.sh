@@ -91,7 +91,7 @@ set_speed_limit(){
   PORT=443
 
   # 限速带宽，以kbps为单位
-  LIMIT=4000
+  LIMIT=8000
 
   sudo iptables -A INPUT -p udp --dport $PORT -m hashlimit --hashlimit-name UDP_LIMIT --hashlimit-mode srcip,dstport --hashlimit-above ${LIMIT}kbps -j DROP
   sudo iptables -A OUTPUT -p udp --sport $PORT -m hashlimit --hashlimit-name UDP_LIMIT --hashlimit-mode srcip,dstport --hashlimit-above ${LIMIT}kbps -j DROP
@@ -150,7 +150,7 @@ ovpen_install(){
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
 #  docker run -v /data/openvpn:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full ling nopass
 #  docker run -v /data/openvpn:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient ling > /data/openvpn/conf/ling.ovpn
-sudo docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
+  sudo docker run --name openvpn -v /data/openvpn:/etc/openvpn -d -p 443:443/udp --cap-add=NET_ADMIN --restart always kylemanna/openvpn
 
 
 }
@@ -159,6 +159,7 @@ set_swap
 block_firewall
 set_speed_limit
 block_bt
+sudo systemctl restart docker
 ovpen_install
 echo "密码文件:/data/openvpn/password_file,格式 用户名 密码 ,一个用户明 密码一行，没有验证用户名，只验证了密码"
 echo "客户端证书:/data/openvpn/ling.ovpn，修改其中的的 remote xxxx 443 udp 这一行,xxxx 为 机器的公网ip"
