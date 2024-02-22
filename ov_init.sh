@@ -157,7 +157,7 @@ ovpen_install(){
 docker_check
 set_swap
 block_firewall
-set_speed_limit
+#set_speed_limit
 block_bt
 sudo systemctl restart docker
 ovpen_install
